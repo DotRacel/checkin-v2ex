@@ -9,10 +9,6 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-34d399" alt="License"></a>
 </p>
 
-# V2EX 每日签到
-
-自动领取 V2EX 每日登录奖励，并可选推送结果通知。使用 Docker 部署，配置好 Cookie 即可每天自动签到。
-
 ## 快速开始
 
 1. 新建一个目录，创建 `docker-compose.yml`：
