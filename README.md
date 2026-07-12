@@ -1,3 +1,14 @@
+<p align="center">
+  <img src=".github/assets/banner.svg" alt="V2EX 每日自动签到" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://github.com/dotracel/checkin-v2ex/actions/workflows/docker-publish.yml"><img src="https://github.com/dotracel/checkin-v2ex/actions/workflows/docker-publish.yml/badge.svg" alt="Build"></a>
+  <a href="https://github.com/dotracel/checkin-v2ex/pkgs/container/checkin-v2ex"><img src="https://img.shields.io/badge/ghcr.io-checkin--v2ex-2496ED?logo=docker&logoColor=white" alt="Docker Image"></a>
+  <img src="https://img.shields.io/badge/python-3.11+-3776AB?logo=python&logoColor=white" alt="Python">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-34d399" alt="License"></a>
+</p>
+
 # V2EX 每日签到
 
 自动领取 V2EX 每日登录奖励，并可选推送结果通知。使用 Docker 部署，配置好 Cookie 即可每天自动签到。
