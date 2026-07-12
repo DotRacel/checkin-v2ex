@@ -11,7 +11,7 @@
 
 ## 快速开始
 
-1. 新建一个目录，创建 `docker-compose.yml`：
+1. 新建一个目录，创建 `docker-compose.yml`，把配置直接写在 `environment` 里：
 
    ```yaml
    services:
@@ -20,21 +20,21 @@
        container_name: v2ex-checkin
        restart: unless-stopped
        environment:
-         RUN_MODE: daemon
-         CHECKIN_TIME: "08:30"
-         TZ: Asia/Shanghai
-       env_file:
-         - .env
+         # ── 必填 ──
+         # 浏览器里的完整 Cookie，必须包含 A2 和 A2O（获取方式见下文）
+         V2EX_COOKIE: 'A2="..."; A2O="..."; PB3_SESSION="..."; V2EX_LANG=zhcn'
+
+         # ── 可选（取消注释即可覆盖默认值）──
+         # APPRISE_URLS: ""          # 通知地址，多个用逗号分隔；留空则只写日志
+         # RUN_MODE: daemon          # daemon=常驻每天定时；once=运行一次即退出
+         # CHECKIN_TIME: "08:30"     # 每天签到时间 HH:MM（仅 daemon 模式）
+         # TZ: Asia/Shanghai         # 时区
+         # V2EX_USER_AGENT: ""       # 自定义 User-Agent，留空用默认
+         # HTTP_TIMEOUT: "20"        # 请求超时（秒）
+         # HTTP_RETRIES: "3"         # 网络失败重试次数
    ```
 
-2. 在同一目录创建 `.env`，填入你的配置（见下方[配置说明](#配置说明)）：
-
-   ```dotenv
-   V2EX_COOKIE=A2="..."; A2O="..."; PB3_SESSION="..."; V2EX_LANG=zhcn
-   APPRISE_URLS=
-   ```
-
-3. 启动：
+2. 启动：
 
    ```bash
    docker compose up -d
@@ -44,12 +44,16 @@
 
 ## 配置说明
 
-| 变量 | 必填 | 说明 |
-|------|:---:|------|
-| `V2EX_COOKIE` | ✅ | 浏览器里的完整 Cookie 字符串，**必须包含 `A2` 和 `A2O`** |
-| `APPRISE_URLS` | | 通知地址，多个用逗号或换行分隔；留空则只写日志 |
-| `CHECKIN_TIME` | | 每天签到时间 `HH:MM`，默认 `08:30` |
-| `TZ` | | 时区，默认 `Asia/Shanghai` |
+| 变量 | 必填 | 默认 | 说明 |
+|------|:---:|------|------|
+| `V2EX_COOKIE` | ✅ | — | 浏览器里的完整 Cookie 字符串，**必须包含 `A2` 和 `A2O`** |
+| `APPRISE_URLS` | | 空 | 通知地址，多个用逗号或换行分隔；留空则只写日志 |
+| `RUN_MODE` | | `daemon` | `daemon` 常驻定时；`once` 运行一次即退出 |
+| `CHECKIN_TIME` | | `08:30` | 每天签到时间 `HH:MM`（仅 `daemon` 模式） |
+| `TZ` | | `Asia/Shanghai` | 时区 |
+| `V2EX_USER_AGENT` | | 内置 | 自定义 User-Agent |
+| `HTTP_TIMEOUT` | | `20` | 请求超时（秒） |
+| `HTTP_RETRIES` | | `3` | 网络失败重试次数 |
 
 ### 如何获取 Cookie
 

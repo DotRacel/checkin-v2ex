@@ -5,8 +5,15 @@ services:
     container_name: v2ex-checkin
     restart: unless-stopped
     environment:
-      RUN_MODE: daemon
-      CHECKIN_TIME: "08:30"
-      TZ: Asia/Shanghai
-    env_file:
-      - .env
+      # ── 必填 ──
+      # 浏览器里的完整 Cookie，必须包含 A2 和 A2O
+      V2EX_COOKIE: 'A2="..."; A2O="..."; PB3_SESSION="..."; V2EX_LANG=zhcn'
+
+      # ── 可选（取消注释即可覆盖默认值）──
+      # APPRISE_URLS: ""          # 通知地址，多个用逗号分隔；留空则只写日志
+      # RUN_MODE: daemon          # daemon=常驻每天定时；once=运行一次即退出
+      # CHECKIN_TIME: "08:30"     # 每天签到时间 HH:MM（仅 daemon 模式）
+      # TZ: Asia/Shanghai         # 时区
+      # V2EX_USER_AGENT: ""       # 自定义 User-Agent，留空用默认
+      # HTTP_TIMEOUT: "20"        # 请求超时（秒）
+      # HTTP_RETRIES: "3"         # 网络失败重试次数
