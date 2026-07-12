@@ -1,0 +1,12 @@
+services:
+  v2ex-checkin:
+    image: ghcr.io/dotracel/checkin-v2ex:latest
+    # 本地自行构建时可改用: build: .
+    container_name: v2ex-checkin
+    restart: unless-stopped
+    environment:
+      RUN_MODE: daemon
+      CHECKIN_TIME: "08:30"
+      TZ: Asia/Shanghai
+    env_file:
+      - .env
