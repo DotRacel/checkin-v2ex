@@ -11,7 +11,7 @@
 
 ## 快速开始
 
-1. 新建一个目录，创建 `docker-compose.yml`，把配置直接写在 `environment` 里：
+1. 新建一个目录，创建 `docker-compose.yml`：
 
    ```yaml
    services:
@@ -63,7 +63,7 @@
 
 ### 通知配置
 
-`APPRISE_URLS` 支持 [Apprise](https://github.com/caronc/apprise/wiki) 的上百种服务，例如：
+`APPRISE_URLS` 支持 [Apprise](https://github.com/caronc/apprise#supported-notifications) 的上百种服务，例如：
 
 ```
 tgram://<bot_token>/<chat_id>      # Telegram
@@ -72,12 +72,3 @@ wecombot://<key>                   # 企业微信机器人
 ```
 
 飞书等更多服务见 Apprise 文档。
-
-## 常用命令
-
-```bash
-docker compose logs -f      # 查看日志
-docker compose pull         # 更新到最新镜像
-docker compose up -d        # 应用配置改动 / 重启
-docker compose down         # 停止并移除容器
-```
